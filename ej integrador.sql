@@ -77,13 +77,17 @@ sumar: el promedio de puntos por partido, el conteo de asistencias por partido, 
 tapones por partido. Además, este resultado debe ser, donde la división sea central.
 */
 
-select count(*)/(select count(nombre) from jugador where peso>=195)+0.9945 as posicion from jugador j inner join equipo e on j.nombre_equipo=e.nombre 
+select count(*)/(select count(nombre) 
+from jugador where peso>=195)+0.9945 as posicion 
+from jugador j inner join equipo e on j.nombre_equipo=e.nombre 
 where e.conferencia='West' and j.procedencia='Michigan';
 
-
+SELECT FLOOR(AVG(Puntos_por_partido)+COUNT(Asistencias_por_partido)+SUM(Tapones_por_partido))
+FROM estadistica AS e INNER JOIN jugador AS j ON e.jugador = j.codigo INNER JOIN equipo AS eq 
+ON j.nombre_equipo = eq.nombre WHERE eq.division = 'Central';
 
 -- posicion 1 
-
+-- clave 631
 
 
 
@@ -102,7 +106,12 @@ Para obtener el siguiente código deberás redondear hacia abajo, la suma de pun
 de todos los jugadores de procedencia argentina.
 */ 
 
+SELECT  ROUND(Tapones_por_partido) FROM estadistica AS e INNER JOIN jugador AS j
+ON jugador = codigo WHERE j.nombre = 'Corey Maggette' AND e.temporada = '00/01';
 
+SELECT FLOOR(SUM(puntos_por_partido)) puntos 
+FROM estadistica AS e 
+INNER JOIN jugador AS j ON jugador = codigo WHERE j.procedencia = 'Argentina';
 
-
-
+-- posicion del candado D 4
+-- clave 191
